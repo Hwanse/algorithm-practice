@@ -15,16 +15,7 @@ public class MockExam {
     List<Student> students = Student.createStudents(guessAnswers.length, guessAnswers);
 
     for (Student student : students) {
-
-      for (int y = 0; y < answers.length; y++) {
-        int[] studentAnswer = student.getGuessAnswer();
-        int index = y % studentAnswer.length;
-
-        if (answers[y] == studentAnswer[index]) {
-          student.addCountAnswer();
-        }
-      }
-
+      student.calculateScore(answers);
     }
 
     // 최다 득점수 산출
@@ -66,20 +57,24 @@ class Student implements Comparable<Student> {
     this.guessAnswer = guessAnswer;
   }
 
+  public void calculateScore(int[] answers) {
+
+    for (int i = 0; i < answers.length; i++) {
+      int targetIndex = i % this.guessAnswer.length;
+
+      if (answers[i] == this.guessAnswer[targetIndex]) {
+        countOfAnswer++;
+      }
+    }
+
+  }
+
   public int getStudentNo() {
     return this.studentNo;
   }
 
   public int getCountAnswer() {
     return this.countOfAnswer;
-  }
-
-  public void addCountAnswer() {
-    this.countOfAnswer += 1;
-  }
-
-  public int[] getGuessAnswer() {
-    return this.guessAnswer;
   }
 
   @Override
