@@ -16,4 +16,13 @@ public class MakePrimeNumberTest {
 
   }
 
+  @Test
+  public void makePrimeNumberDFSTest() {
+    int[] arr = new int[] {1, 2, 7, 6, 4};
+    MakePrimeNumberDFS dfs = new MakePrimeNumberDFS();
+
+    int result = dfs.solution(arr);
+    assertEquals(4, result);
+  }
+
 }
