@@ -43,8 +43,8 @@ public class MergeSort {
 
     // part2(뒷 배열)은 과정이 다 끝났고 part1(앞 배열)만 값이 남아있을 때
     // 해당 나머지 part1 배열들을 원래 arr 배열에 복사하는 과정
-    for (int i = 0; i <= mid - part1; i++) {
-      arr[index + i] = tmp[part1 + i];
+    for (int i = part1; i <= mid; i++) {   //(int i = 0; i <= mid - part1; i++)
+      arr[index++] = tmp[i];                //arr[index + i] = tmp[part1 + i];
     }
     // 반대의 경우인 part1의 과정이 다 끝나고 part2의 나머지 값들을 arr 에 넣을 필욘없다
     // 왜냐하면 이미 part1의 값들이 뒷 배열보다 더 작기때문에 정렬 과정이 마친것이기도하고

@@ -4,14 +4,14 @@ package study.algorithm.sort;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MergeSortTest {
+public class BubbleSortTest {
 
   @Test
-  public void mergeSortTest() {
+  public void bubbleSortTest() {
     int[] arr = new int[] {1, 8, 6, 5, 7, 10, 3, 9, 2, 4};
-    MergeSort ms = new MergeSort();
+    BubbleSort bs = new BubbleSort();
 
-    ms.startMergeSort(arr);
+    bs.bubbleSort(arr, arr.length - 1);
     Assert.assertArrayEquals(new int[] {1,2,3,4,5,6,7,8,9,10}, arr);
   }
 
