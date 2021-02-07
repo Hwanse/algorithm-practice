@@ -4,6 +4,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Java 에서의 Set 자료구조는 내부적으로 hashCode 메소드를 호출하여 1차적으로 검증하고
+ * 2차적으로 equals 메소드로 값이 값은지 다른지를 체크한다.
+ * 여기서 Path 와 Point 같은 개발자가 직접 커스텀한 참조형 레퍼런스의 경우에는
+ * Set 자료구조의 Element 로 활용하기 위해서 hashCode 와 equals 메소드의 오버라이딩이 반드시 필요하다
+ */
 public class VisitLength {
 
   public static final int LIMIT = 5;
