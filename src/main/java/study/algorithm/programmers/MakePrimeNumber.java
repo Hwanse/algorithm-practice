@@ -23,7 +23,11 @@ public class MakePrimeNumber {
         isVisitArr[y] = VISIT;
         for(int z = y + 1; z < nums.length; z++) {
           isVisitArr[z] = VISIT;
-          if (isPrime(calulateSum(nums))) primeNumberCount++;
+
+          // sum 값 계산
+          int sum = calulateSum(nums[x], nums[y], nums[z]);
+          if (isPrime(sum)) primeNumberCount++;
+
           isVisitArr[z] = NOT_VISIT;
         }
         isVisitArr[y] = NOT_VISIT;
@@ -34,13 +38,11 @@ public class MakePrimeNumber {
     return primeNumberCount;
   }
 
-  private int calulateSum(int[] nums) {
+  private int calulateSum(int... numbers) {
     int sum = 0;
 
-    for (int i = 0; i < nums.length; i++) {
-      if (isVisitArr[i] == VISIT) {
-        sum += nums[i];
-      }
+    for (int i = 0; i < numbers.length; i++) {
+      sum += numbers[i];
     }
 
     return sum;
