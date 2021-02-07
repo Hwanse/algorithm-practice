@@ -2,6 +2,7 @@ package study.algorithm.datastructure;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import org.junit.Test;
 
 public class HashTablePracticeTest {
@@ -19,8 +20,11 @@ public class HashTablePracticeTest {
     assertEquals("4", hashTable.get("hw"));
     assertEquals("Not Found", hashTable.get("sssss"));
 
+    System.out.println(Arrays.toString("abcd".split("")));
+
     hashTable.put("hwanse", "hwanse");
     assertEquals("hwanse", "hwanse");
+
   }
 
 }

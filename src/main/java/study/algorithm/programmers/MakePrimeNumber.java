@@ -8,31 +8,19 @@ package study.algorithm.programmers;
  */
 public class MakePrimeNumber {
 
-  private static final int VISIT = 1;
-  private static final int NOT_VISIT = 0;
-
   static int primeNumberCount = 0;
-  static int[] isVisitArr;
 
   public int solution(final int[] nums) {
-    isVisitArr = new int[nums.length];
 
     for (int x = 0; x < nums.length; x++) {
-      isVisitArr[x] = VISIT;
       for (int y = x + 1; y < nums.length; y++) {
-        isVisitArr[y] = VISIT;
         for(int z = y + 1; z < nums.length; z++) {
-          isVisitArr[z] = VISIT;
-
           // sum 값 계산
           int sum = calulateSum(nums[x], nums[y], nums[z]);
           if (isPrime(sum)) primeNumberCount++;
 
-          isVisitArr[z] = NOT_VISIT;
         }
-        isVisitArr[y] = NOT_VISIT;
       }
-      isVisitArr[x] = NOT_VISIT;
     }
 
     return primeNumberCount;

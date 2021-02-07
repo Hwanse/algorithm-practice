@@ -66,7 +66,6 @@ public class HashTablePractice {
     int hashcode = getHashCode(key);
     int index = convertToIndex(hashcode);
     LinkedList<Node> list = data[index];
-    System.out.println(key + ", hashcode(" + hashcode + "), index(" + index + ")");
     if (list == null) {
       list = new LinkedList<>();
       data[index] = list;
