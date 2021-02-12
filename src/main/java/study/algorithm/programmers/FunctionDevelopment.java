@@ -1,9 +1,11 @@
 package study.algorithm.programmers;
 
 import java.util.LinkedList;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.function.ToIntFunction;
 
 /**
  * 1. SortedMap
@@ -60,14 +62,9 @@ public class FunctionDevelopment {
       day++;
     }
 
-    int[] answer = new int[result.size()];
-    int index = 0;
-
-    for (int key : result.keySet()) {
-      answer[index++] = result.get(key);
-    }
-
-    return answer;
+    return result.entrySet().stream()
+                          .mapToInt(entry -> entry.getValue())
+                          .toArray();
   }
 
 }
