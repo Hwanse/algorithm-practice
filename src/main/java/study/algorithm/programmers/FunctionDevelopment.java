@@ -38,28 +38,21 @@ public class FunctionDevelopment {
     SortedMap<Integer, Integer> result = new TreeMap<>();
 
     for (int i = 0; i < progresses.length; i++) {
-      queue.add(progresses[i]);
+      queue.add( (int) Math.ceil((double)(100 - progresses[i]) / speeds[i]) );
     }
 
-    int day = 1;        // 작업 소요 일자
-    int workOrder = 0;  // 작업 순서
+    int currentDay = 1;        // 작업 소요 일자
     while (!queue.isEmpty()) {
 
-      int progress = queue.peek();
-      /**
-       * 작업 상황이 100% 이상이면 작업 큐에서 제거, 큐의 선행 작업이 끝난 뒤
-       * 그 이후 작업이 앞선 작업의 day 만큼 처리했을 때 동일하게 끝나는 경우도
-       * 있으므로, continue를 사용하여 바로 뒷 작업의 진행형황을 체크.
-       * 뒷 작업이 마무리가 안됐으면 day 값을 증가하여 반복 처리
-       */
-      if (progress + (speeds[workOrder] * day) >= 100) {
+      int remainDays = queue.peek();
+
+      if (remainDays <= currentDay) {
         queue.poll();
-        workOrder++;
-        result.put(day, result.getOrDefault(day, 0) + 1);
+        result.put(currentDay, result.getOrDefault(currentDay, 0) + 1);
         continue;
       }
 
-      day++;
+      currentDay++;
     }
 
     return result.entrySet().stream()
