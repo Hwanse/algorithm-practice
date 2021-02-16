@@ -1,40 +1,34 @@
 package study.algorithm.programmers;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class TruckOnTheBridge {
 
   public int solution(int bridge_length, int weight, int[] truck_weights) {
-    List<Truck> bridge = new ArrayList<>();
+    Bridge bridge = new Bridge(bridge_length, weight);
     Queue<Truck> queue = new LinkedList<>();
+
     for(int data : truck_weights) {
       queue.add(new Truck(data, 0));
     }
 
     int second = 0;
-    int currentWeight = 0;
 
-    while(!queue.isEmpty() || !bridge.isEmpty()) {
-
+    while(!queue.isEmpty() || !bridge.trucks.isEmpty()) {
       second++;
-      bridge.removeIf(truck -> truck.distance >= bridge_length);
 
-      if (!queue.isEmpty() && currentWeight + queue.peek().weight <= weight) {
-        Truck truck = queue.poll();
-        currentWeight += truck.weight;
-        bridge.add(truck);
+      if (!bridge.trucks.isEmpty()) {
+        bridge.findPassedTruck();
       }
 
-      for (Truck truck : bridge) {
-        if (truck.distance + 1 == bridge_length) {
-          currentWeight -= truck.weight;
-          truck.moveTruck();
-        } else {
-          truck.moveTruck();
-        }
+      if (!queue.isEmpty() && bridge.isWithinWeightLimit(queue.peek())) {
+        Truck truck = queue.poll();
+        bridge.enterBridge(truck);
+      }
+
+      for (Truck truck : bridge.trucks) {
+        truck.moveTruck();
       }
 
     }
@@ -55,5 +49,34 @@ class Truck {
 
   public void moveTruck() {
     this.distance += 1;
+  }
+}
+
+class Bridge {
+  Queue<Truck> trucks;
+  final int bridgeLength;
+  int weightLimit;
+  int currentWeight;
+
+  public Bridge (int bridgeLength, int weightLimit) {
+    this.trucks = new LinkedList<>();
+    this.bridgeLength = bridgeLength;
+    this.weightLimit = weightLimit;
+    this.currentWeight = 0;
+  }
+
+  void enterBridge(Truck truck) {
+    trucks.add(truck);
+    currentWeight += truck.weight;
+  }
+
+  void findPassedTruck() {
+    if (trucks.peek().distance == bridgeLength) {
+      currentWeight -= trucks.poll().weight;
+    }
+  }
+
+  boolean isWithinWeightLimit(Truck truck) {
+    return currentWeight + truck.weight <= weightLimit;
   }
 }
