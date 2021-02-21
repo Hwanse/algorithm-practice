@@ -2,24 +2,17 @@ package study.algorithm.programmers;
 
 public class TargetNumber {
 
-  private int answer = 0;
-
   public int solution(int[] numbers, int target) {
-    makeTargetNumber(numbers, 0, 0, target);
-
-    return answer;
+    return makeTargetNumber(numbers, 0, 0, target);
   }
 
-  private void makeTargetNumber(int[] numbers, int index, int sum, int target) {
+  private int makeTargetNumber(int[] numbers, int index, int sum, int target) {
     if (index >= numbers.length) {
-      if (sum == target) {
-        answer++;
-      }
-      return;
+      return (sum == target) ? 1 : 0;
     }
 
-    makeTargetNumber(numbers, index + 1, sum + numbers[index], target);
-    makeTargetNumber(numbers, index + 1, sum - numbers[index], target);
+    return makeTargetNumber(numbers, index + 1, sum + numbers[index], target)
+         + makeTargetNumber(numbers, index + 1, sum - numbers[index], target);
   }
 
 }
