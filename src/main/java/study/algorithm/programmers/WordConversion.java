@@ -1,6 +1,7 @@
 package study.algorithm.programmers;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class WordConversion {
 
@@ -8,9 +9,39 @@ public class WordConversion {
     if (!Arrays.asList(words).contains(target))
       return 0;
 
-    return findMinConvertCount(words, new boolean[words.length], begin, target, 0, words.length);
+    // 스택을 이용한 dfs
+    boolean[] visitArr = new boolean[words.length];
+    Stack<String> stack = new Stack<>();
+    stack.push(begin);
+
+    String standardWord;
+    int count = 0;
+
+    while (!stack.isEmpty()) {
+
+      standardWord = stack.pop();
+
+      if (standardWord.equals(target)) {
+        break;
+      }
+
+      for (int i = 0; i < words.length; i++) {
+
+        if(!visitArr[i] && isConvertable(standardWord, words[i])) {
+          visitArr[i] = true;
+          stack.push(words[i]);
+        }
+
+      }
+
+      count++;
+    }
+
+    return count;
+//    return findMinConvertCount(words, new boolean[words.length], begin, target, 0, words.length);
   }
 
+  // 재귀를 통해 구현한 dfs
   public int findMinConvertCount(String[] words, boolean[] visited, String standardWord, String target, int count, int minCount) {
     if (standardWord.equals(target)) {
       return count;
