@@ -99,3 +99,5 @@ buildNumber.properties
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,maven
 /.idea/
 /src/main/java/study/algorithm/codingfestival2021/WatchaContents.java
+/src/main/java/study/algorithm/programmers/devMatching/
+/src/main/java/study/algorithm/programmers/devMatching/
