@@ -59,7 +59,7 @@ public class ComplexNumbering {
         return x >= 0 && y >= 0 && x < map.length && y < map.length;
     }
 
-    public enum Direction {
+    enum Direction {
         UP(-1, 0), DOWN(1, 0), LEFT(0, -1), RIGHT(0, 1);
 
         private int x;
