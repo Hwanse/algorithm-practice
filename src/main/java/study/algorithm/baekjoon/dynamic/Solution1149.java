@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * Bottom-Up 스타일로 풀이
  * 가장 아래에서 부터 이전 요소들의 최소값을 계속 더하면서 결론을 도출한다.
  */
 public class Solution1149 {
