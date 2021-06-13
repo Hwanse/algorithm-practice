@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import java.util.stream.Collectors;
 
 public class Solution18258 {
 
@@ -15,6 +13,7 @@ public class Solution18258 {
         int n = Integer.parseInt(br.readLine());
         Queue<Integer> queue = new LinkedList<>();
         StringBuilder sb = new StringBuilder();
+        int last = 0;
 
         for (int i = 0; i < n; i++) {
             String[] input = br.readLine().split(" ");
@@ -23,6 +22,8 @@ public class Solution18258 {
                 case "push":
                     int number = Integer.parseInt(input[1]);
                     queue.offer(number);
+                    // 큐는 FIFO이기 때문에 push 연산마다 맨 마지막 요소미으로 변수로 저장
+                    last = number;
                     break;
                 case "pop":
                     if (queue.isEmpty()) {
@@ -52,8 +53,7 @@ public class Solution18258 {
                     if (queue.isEmpty()) {
                         append(sb, -1);
                     } else {
-                        List<Integer> list = queue.stream().collect(Collectors.toList());
-                        append(sb, list.get(list.size() - 1));
+                        append(sb, last);
                     }
                     break;
                 default:
