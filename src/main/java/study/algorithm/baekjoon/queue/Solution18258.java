@@ -17,38 +17,47 @@ public class Solution18258 {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < n; i++) {
-            String input = br.readLine();
+            String[] input = br.readLine().split(" ");
 
-            if (input.contains("push")) {
-                int number = Integer.parseInt(input.split(" ")[1]);
-                queue.offer(number);
-            } else if (input.contains("pop")) {
-                if (queue.isEmpty()) {
-                    append(sb, -1);
-                } else {
-                    append(sb, queue.poll());
-                }
-            } else if (input.contains("size")) {
-                append(sb, queue.size());
-            } else if (input.contains("empty")) {
-                if (queue.isEmpty()) {
-                    append(sb, 1);
-                } else {
-                    append(sb, 0);
-                }
-            } else if (input.contains("front")) {
-                if (queue.isEmpty()) {
-                    append(sb, -1);
-                } else {
-                    append(sb, queue.peek());
-                }
-            } else {
-                if (queue.isEmpty()) {
-                    append(sb, -1);
-                } else {
-                    List<Integer> list = queue.stream().collect(Collectors.toList());
-                    append(sb, list.get(list.size() - 1));
-                }
+            switch (input[0]) {
+                case "push":
+                    int number = Integer.parseInt(input[1]);
+                    queue.offer(number);
+                    break;
+                case "pop":
+                    if (queue.isEmpty()) {
+                        append(sb, -1);
+                    } else {
+                        append(sb, queue.poll());
+                    }
+                    break;
+                case "size":
+                    append(sb, queue.size());
+                    break;
+                case "empty":
+                    if (queue.isEmpty()) {
+                        append(sb, 1);
+                    } else {
+                        append(sb, 0);
+                    }
+                    break;
+                case "front":
+                    if (queue.isEmpty()) {
+                        append(sb, -1);
+                    } else {
+                        append(sb, queue.peek());
+                    }
+                    break;
+                case "back":
+                    if (queue.isEmpty()) {
+                        append(sb, -1);
+                    } else {
+                        List<Integer> list = queue.stream().collect(Collectors.toList());
+                        append(sb, list.get(list.size() - 1));
+                    }
+                    break;
+                default:
+                    break;
             }
 
         }
